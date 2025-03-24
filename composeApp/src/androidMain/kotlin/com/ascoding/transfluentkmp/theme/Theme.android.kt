@@ -1,4 +1,4 @@
-package com.ascoding.transfluentkmp.theme
+package com.ascoding.transfluentkmpkmp.theme
 
 import android.app.Activity
 import androidx.compose.runtime.Composable

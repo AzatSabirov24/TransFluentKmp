@@ -1,4 +1,4 @@
-package com.ascoding.transfluentkmp.theme
+package com.ascoding.transfluentkmpkmp.theme
 
 import androidx.compose.ui.graphics.Color
 

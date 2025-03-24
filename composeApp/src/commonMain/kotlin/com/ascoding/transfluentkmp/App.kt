@@ -1,4 +1,4 @@
-package com.ascoding.transfluentkmp
+package com.ascoding.transfluentkmpkmp
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
@@ -13,8 +13,8 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import transfluentkmp.composeapp.generated.resources.*
-import com.ascoding.transfluentkmp.theme.AppTheme
-import com.ascoding.transfluentkmp.theme.LocalThemeIsDark
+import com.ascoding.transfluentkmpkmp.theme.AppTheme
+import com.ascoding.transfluentkmpkmp.theme.LocalThemeIsDark
 import kotlinx.coroutines.isActive
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
