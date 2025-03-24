@@ -35,7 +35,7 @@ import com.ascoding.transfluent.common.utils.ui.TypeMode
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthAction
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthEvent
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthViewModel
-import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginAction
+import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
 import com.ascoding.transfluent.navigation.route.Route
 import com.ascoding.transfluent.theme.LocalExtendedColorScheme
 import com.ascoding.transfluent.theme.OnPrimary
@@ -174,7 +174,7 @@ fun WelcomeScreen(
                         }
                     },
                     onClick = {
-                        onAction(LoginAction.OnContinueWithGoogleClick)
+                        onAction(LoginOrRegisterAction.OnContinueWithGoogleClick)
                     },
                 )
 //                GoogleButtonUiContainer(

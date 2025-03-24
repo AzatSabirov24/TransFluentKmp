@@ -60,7 +60,7 @@ import com.ascoding.transfluent.common.utils.ui.TypeMode
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthAction
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthEvent
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthViewModel
-import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginAction
+import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
 import com.ascoding.transfluent.navigation.route.Route
 import com.ascoding.transfluent.theme.LocalExtendedColorScheme
 import com.ascoding.transfluent.theme.OnPrimary
@@ -236,7 +236,7 @@ fun LoginScreen(
                         keyboardActions = KeyboardActions(
                             onDone = {
                                 onAction(
-                                    LoginAction.OnRegisterClick(
+                                    LoginOrRegisterAction.OnRegisterClick(
                                         email = email,
                                         password = password
                                     )
@@ -300,7 +300,7 @@ fun LoginScreen(
                 ),
                 onClick = {
                     onAction(
-                        LoginAction.OnLoginWithEmailClick(
+                        LoginOrRegisterAction.OnLoginOrRegisterWithEmailClick(
                             email = email.trim(),
                             password = password.trim()
                         )

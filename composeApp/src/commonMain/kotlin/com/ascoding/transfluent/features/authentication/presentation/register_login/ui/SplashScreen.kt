@@ -10,9 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthAction
-import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthEvent
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthViewModel
-import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginAction
+import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
 import com.ascoding.transfluent.theme.Primary
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -34,7 +33,7 @@ fun SplashScreenRoot(
 fun SplashScreen(
     onAction: (AuthAction) -> Unit = {},
 ) {
-    onAction.invoke(LoginAction.UserAuthenticationChecking)
+    onAction.invoke(LoginOrRegisterAction.UserAuthenticationChecking)
 
     Box(
         contentAlignment = Alignment.Center,

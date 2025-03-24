@@ -67,7 +67,7 @@ import com.ascoding.transfluent.features.authentication.presentation.register_lo
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthEvent
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthState
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthViewModel
-import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginAction
+import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
 import com.ascoding.transfluent.features.authentication.presentation.register_login.ui.components.IconWithText
 import com.ascoding.transfluent.navigation.route.Route
 import com.ascoding.transfluent.theme.GreenRegular
@@ -266,7 +266,7 @@ fun RegisterScreen(
                         keyboardActions = KeyboardActions(
                             onDone = {
                                 onAction(
-                                    LoginAction.OnRegisterClick(
+                                    LoginOrRegisterAction.OnRegisterClick(
                                         email = email,
                                         password = password
                                     )
@@ -404,7 +404,7 @@ fun RegisterScreen(
                 ),
                 onClick = {
                     onAction(
-                        LoginAction.OnRegisterClick(
+                        LoginOrRegisterAction.OnRegisterClick(
                             email = email.trim(),
                             password = password.trim()
                         )

@@ -26,7 +26,7 @@ class FakeAuthManager(override val userAuthId: String?) : AuthManager {
 
     override fun login(
         scope: CoroutineScope,
-        credentials: Credentials,
+        credentials: Credentials?,
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {

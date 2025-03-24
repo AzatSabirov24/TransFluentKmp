@@ -7,7 +7,7 @@ import com.ascoding.transfluent.features.authentication.domain.PasswordValidator
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthAction
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthEvent
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthState
-import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginAction
+import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -25,7 +25,7 @@ class AuthActionReducer(
     ): AuthState {
         return when (action) {
 
-            is LoginAction.UserAuthenticationChecking -> {
+            is LoginOrRegisterAction.UserAuthenticationChecking -> {
                 state.copy(isUserAuthenticated = authManager?.userAuthId?.isNotBlank() ?: false)
             }
 
@@ -39,7 +39,7 @@ class AuthActionReducer(
                 password = action.password
             )
 
-            is LoginAction.OnRegisterClick -> {
+            is LoginOrRegisterAction.OnRegisterClick -> {
                 dispatchEvent(AuthEvent.Loading)
                 scope.launch {
                     authManager?.register(
@@ -59,7 +59,7 @@ class AuthActionReducer(
                 return state
             }
 
-            is LoginAction.OnLoginWithEmailClick -> {
+            is LoginOrRegisterAction.OnLoginOrRegisterWithEmailClick -> {
                 dispatchEvent(AuthEvent.Loading)
                 scope.launch {
                     authManager?.login(
@@ -79,7 +79,7 @@ class AuthActionReducer(
                 return state
             }
 
-            LoginAction.OnContinueWithGoogleClick -> {
+            LoginOrRegisterAction.OnContinueWithGoogleClick -> {
                 scope.launch {
                     authManager?.login(
                         scope = scope,

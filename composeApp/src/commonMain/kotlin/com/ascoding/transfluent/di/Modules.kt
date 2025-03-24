@@ -6,6 +6,7 @@ import com.ascoding.transfluent.features.authentication.domain.AuthManager
 import com.ascoding.transfluent.features.authentication.domain.EmailValidator
 import com.ascoding.transfluent.features.authentication.domain.PasswordValidator
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthManagerFactory
+import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthManagerFactoryImpl
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthViewModel
 import com.ascoding.transfluent.features.authentication.presentation.register_login.reducer.AuthActionReducer
 import com.ascoding.transfluent.features.profile.ProfileReducer
@@ -20,8 +21,8 @@ val sharedModule = module {
     // auth
     factory<AuthManager>(named("firebase")) { FirebaseAuthManager() }
     factory<AuthManager>(named("google")) { GoogleAuthManager() }
-    factory {
-        AuthManagerFactory(
+    factory<AuthManagerFactory> {
+        AuthManagerFactoryImpl(
             firebaseAuthManager = get(named("firebase")),
             googleAuthManager = get(named("google"))
         )

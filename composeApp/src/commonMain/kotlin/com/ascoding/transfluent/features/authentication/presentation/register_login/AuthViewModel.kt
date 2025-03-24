@@ -25,7 +25,7 @@ class AuthViewModel(
         viewModelScope.launch {
             _state.update { state ->
                 val authManager = when (action) {
-                    is LoginAction -> authManagerFactory.authManager(action)
+                    is LoginOrRegisterAction -> authManagerFactory.authManager(action)
                     else -> null
                 }
 

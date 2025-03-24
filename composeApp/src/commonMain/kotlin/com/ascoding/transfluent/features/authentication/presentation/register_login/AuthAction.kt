@@ -17,21 +17,21 @@ sealed interface AuthAction {
     data object OnContinueWithEmailClick : AuthAction
 }
 
-sealed interface LoginAction : AuthAction {
+sealed interface LoginOrRegisterAction : AuthAction {
 
     data class OnRegisterClick(
         val email: String,
         val password: String,
-    ) : LoginAction
+    ) : LoginOrRegisterAction
 
-    data class OnLoginWithEmailClick(
+    data class OnLoginOrRegisterWithEmailClick(
         val email: String = "",
         val password: String = ""
-    ) : LoginAction
+    ) : LoginOrRegisterAction
 
-    data object OnContinueWithGoogleClick : LoginAction
+    data object OnContinueWithGoogleClick : LoginOrRegisterAction
 
-    data object UserAuthenticationChecking : LoginAction
+    data object UserAuthenticationChecking : LoginOrRegisterAction
 
 
 }
