@@ -7,6 +7,7 @@ import com.ascoding.transfluent.features.authentication.presentation.register_lo
 class FakeAuthManagerFactory(
     private val authManager: AuthManager
 ) : AuthManagerFactory {
+
     override fun authManager(action: LoginOrRegisterAction): AuthManager {
         return authManager
     }

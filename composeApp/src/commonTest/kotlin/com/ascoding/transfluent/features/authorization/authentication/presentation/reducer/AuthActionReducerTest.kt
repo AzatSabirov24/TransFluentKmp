@@ -119,36 +119,36 @@ class AuthActionReducerTest {
         )
     }
 
-//    @Test
-//    fun testLoadingAndSuccessEventsAreTriggered() = runTest {
-//        var loadingEventDispatched = false
-//        var successEventDispatched = false
-//
-//        authActionReducer.reduce(
-//            scope = this,
-//            state = AuthState(),
-//            action = AuthAction.OnRegisterClick(
-//                email = "email@mail.com",
-//                password = "Pass1234"
-//            ),
-//            authManager = fakeAuthManager,
-//            dispatchEvent = { event ->
-//                when (event) {
-//                    is AuthEvent.Loading -> loadingEventDispatched = true
-//                    is AuthEvent.AuthSuccess -> successEventDispatched = true
-//                    else -> Unit
-//                }
-//            }
-//        )
-//        fakeAuthManager.simulateSuccess(scope = this)
-//        advanceUntilIdle()
-//        loadingEventDispatched should beTrue(
-//            "Loading event should be dispatched"
-//        )
-//        successEventDispatched should beTrue(
-//            "Success event should be dispatched"
-//        )
-//    }
+    @Test
+    fun testLoadingAndSuccessEventsAreTriggered() = runTest {
+        var loadingEventDispatched = false
+        var successEventDispatched = false
+
+        authActionReducer.reduce(
+            scope = this,
+            state = AuthState(),
+            action = LoginOrRegisterAction.OnRegisterClick(
+                email = "email@mail.com",
+                password = "Pass1234"
+            ),
+            authManager = fakeAuthManager,
+            dispatchEvent = { event ->
+                when (event) {
+                    is AuthEvent.Loading -> loadingEventDispatched = true
+                    is AuthEvent.AuthSuccess -> successEventDispatched = true
+                    else -> Unit
+                }
+            }
+        )
+        fakeAuthManager.simulateSuccess(scope = this)
+        advanceUntilIdle()
+        loadingEventDispatched should beTrue(
+            "Loading event should be dispatched"
+        )
+        successEventDispatched should beTrue(
+            "Success event should be dispatched"
+        )
+    }
 
     @Test
     fun testLoadingAndErrorEventsAreTriggered() = runTest {
