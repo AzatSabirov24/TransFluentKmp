@@ -9,6 +9,7 @@ import com.ascoding.transfluent.features.authentication.presentation.register_lo
 import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
 import com.ascoding.transfluent.features.authentication.presentation.register_login.reducer.AuthActionReducer
 import com.ascoding.transfluent.features.authorization.authentication.data.FakeAuthManager
+import com.ascoding.transfluent.utils.beFalse
 import com.ascoding.transfluent.utils.beTrue
 import com.ascoding.transfluent.utils.equal
 import com.ascoding.transfluent.utils.should
@@ -74,62 +75,62 @@ class AuthViewModelTest {
         )
     }
 
-//    @Test
-//    fun testFailIfIdIsBlank() = runTest {
-//        // Given
-//        backgroundScope.launch {
-//            viewModel.state.collect {}
-//        }
-//        createViewModel(authId = " ")
-//
-//        // When
-//        viewModel.onEvent(AuthEvent.UserAuthenticationChecking)
-//        advanceUntilIdle()
-//
-//        // Then
-//        val isUserAuthenticated = viewModel.state.value.isUserAuthenticated
-//        isUserAuthenticated should beFalse(
-//            message = "isUserAuthenticated should be false because auth id is blank"
-//        )
-//    }
+    @Test
+    fun testFailIfIdIsBlank() = runTest {
+        // Given
+        backgroundScope.launch {
+            viewModel.state.collect {}
+        }
+        createViewModel(authId = " ")
 
-//    @Test
-//    fun testFailIfIdIsEmpty() = runTest {
-//        // Given
-//        backgroundScope.launch {
-//            viewModel.state.collect {}
-//        }
-//        createViewModel(authId = "")
-//
-//        // When
-//        viewModel.onEvent(AuthEvent.UserAuthenticationChecking)
-//        advanceUntilIdle()
-//
-//        // Then
-//        val isUserAuthenticated = viewModel.state.value.isUserAuthenticated
-//        isUserAuthenticated should beFalse(
-//            message = "isUserAuthenticated should be false because auth id is empty"
-//        )
-//    }
-//
-//    @Test
-//    fun testFailIfIdIsNull() = runTest {
-//        // Given
-//        backgroundScope.launch {
-//            viewModel.state.collect {}
-//        }
-//        createViewModel(authId = null)
-//
-//        // When
-//        viewModel.onEvent(AuthEvent.UserAuthenticationChecking)
-//        advanceUntilIdle()
-//
-//        // Then
-//        val isUserAuthenticated = viewModel.state.value.isUserAuthenticated
-//        isUserAuthenticated should beNull(
-//            message = "isUserAuthenticated should be null because auth id is null"
-//        )
-//    }
+        // When
+        viewModel.onAction(action = LoginOrRegisterAction.UserAuthenticationChecking)
+        advanceUntilIdle()
+
+        // Then
+        val isUserAuthenticated = viewModel.state.value.isUserAuthenticated
+        isUserAuthenticated should beFalse(
+            message = "isUserAuthenticated should be false because auth id is blank"
+        )
+    }
+
+    @Test
+    fun testFailIfIdIsEmpty() = runTest {
+        // Given
+        backgroundScope.launch {
+            viewModel.state.collect {}
+        }
+        createViewModel(authId = "")
+
+        // When
+        viewModel.onAction(action = LoginOrRegisterAction.UserAuthenticationChecking)
+        advanceUntilIdle()
+
+        // Then
+        val isUserAuthenticated = viewModel.state.value.isUserAuthenticated
+        isUserAuthenticated should beFalse(
+            message = "isUserAuthenticated should be false because auth id is empty"
+        )
+    }
+
+    @Test
+    fun testFailIfIdIsNull() = runTest {
+        // Given
+        backgroundScope.launch {
+            viewModel.state.collect {}
+        }
+        createViewModel(authId = null)
+
+        // When
+        viewModel.onAction(action = LoginOrRegisterAction.UserAuthenticationChecking)
+        advanceUntilIdle()
+
+        // Then
+        val isUserAuthenticated = viewModel.state.value.isUserAuthenticated
+        isUserAuthenticated should beFalse(
+            message = "isUserAuthenticated should be null because auth id is null"
+        )
+    }
 
     @Test
     fun testEmailIsStoredCorrectlyInState() = runTest {
@@ -170,33 +171,4 @@ class AuthViewModelTest {
             message = "The password should be marked as valid"
         )
     }
-
-//
-//    @Test
-//    fun testStateIsNotLoadingWhenSignUpSuccess() = runTest {
-//        // Given
-//        backgroundScope.launch {
-//            viewModel.state.collect { }
-//        }
-//        createViewModel("fakeId")
-//
-//        // When
-//        viewModel.onAction(
-//            AuthAction.OnSignUpClick(
-//                email = "email@mail.com",
-//                password = "qqqq1111"
-//            )
-//        )
-//
-//        fakeAuthManager.simulateSuccess(TestScope())
-//        advanceUntilIdle()
-//
-//        // Then
-//        assertFalse(
-//            viewModel.state.value.isLoading,
-//            "The state should not be loading after success sign up"
-//        )
-//    }
-//
-//
 }
