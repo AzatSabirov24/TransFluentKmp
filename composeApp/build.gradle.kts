@@ -1,3 +1,4 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
@@ -5,6 +6,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.jetbrains.kotlin.serialization)
@@ -38,11 +40,13 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
             implementation(libs.ktor.client.okhttp)
+            implementation(project.dependencies.platform(libs.firebase.bom))
         }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -60,19 +64,31 @@ kotlin {
 
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)
+            implementation(libs.firebase.auth)
+
+            implementation(libs.kmpauth.google)
+            implementation(libs.kmpauth.uihelper)
+
             api(libs.koin.core)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
-//            implementation(libs.kotlinx.coroutines.swing)
+            implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.ktor.client.okhttp)
         }
         nativeMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(kotlin("test-annotations-common"))
 
+            @OptIn(ExperimentalComposeLibrary::class)
+            implementation(compose.uiTest)
+        }
         dependencies {
             ksp(libs.androidx.room.compiler)
+            implementation(libs.firebase.common.ktx)
         }
     }
 
@@ -82,14 +98,14 @@ kotlin {
 }
 
 android {
-    namespace = "com.ascoding.transfluentkmp"
-    compileSdk = 35
+    namespace = "com.ascoding.transfluent"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 35
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
 
-        applicationId = "com.ascoding.transfluentkmp.androidApp"
+        applicationId = "com.ascoding.transfluent"
         versionCode = 1
         versionName = "1.0.0"
 
@@ -98,8 +114,8 @@ android {
 }
 
 dependencies {
-    androidTestImplementation(libs.androidx.uitest.junit4)
-    debugImplementation(libs.androidx.uitest.testManifest)
+    debugImplementation(libs.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.ui.tooling)
 }
 
 compose.desktop {
@@ -119,8 +135,12 @@ compose.desktop {
             }
             macOS {
                 iconFile.set(project.file("desktopAppIcons/MacosIcon.icns"))
-                bundleID = "com.ascoding.transfluentkmp.desktopApp"
+                bundleID = "com.ascoding.transfluent.desktopApp"
             }
         }
     }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

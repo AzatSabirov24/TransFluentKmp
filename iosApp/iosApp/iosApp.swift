@@ -1,19 +1,40 @@
 import UIKit
 import ComposeApp
+import Firebase
+import GoogleSignIn
+import SwiftUI
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
+@main	
+struct iOSApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+        
+        var body: some Scene {
+            WindowGroup {
+                ContentView().onOpenURL { url in
+                    GIDSignIn.sharedInstance.handle(url)
+                }
+            }
+        }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+      _ app: UIApplication,
+      open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
     ) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        if let window = window {
-            window.rootViewController = MainKt.MainViewController()
-            window.makeKeyAndVisible()
-        }
+      var handled: Bool
+
+      handled = GIDSignIn.sharedInstance.handle(url)
+      if handled {
         return true
+      }
+
+      return false
     }
 }

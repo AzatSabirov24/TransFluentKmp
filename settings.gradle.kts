@@ -1,4 +1,6 @@
-rootProject.name = "TransFluentKmp"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "TransFluent"
 
 pluginManagement {
     repositories {

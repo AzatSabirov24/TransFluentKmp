@@ -1,7 +1,25 @@
 <resources>
-    <string name="cyclone">Cyclone</string>
-    <string name="open_github">Open github</string>
-    <string name="run">Run</string>
-    <string name="stop">Stop</string>
-    <string name="theme">Theme</string>
+
+<!--    Auth-->
+    <string name="continue_with_email">Continue with email</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="or">Or</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="valid_email">Valid email</string>">
+    <string name="invalid_email">Invalid email</string>">
+    <string name="minimum_eight_characters">Minimum 8 characters in password</string>
+    <string name="minimum_one_letter">Minimum 1 letter in password</string>
+    <string name="minimum_one_digit">Minimum 1 digit in password</string>
+    <string name="password_has_eight_characters">Password has 8 characters</string>
+    <string name="password_does_not_have_eight_characters">Password does not have 8 characters</string>
+    <string name="password_has_minimum_one_letter">Password has minimum one letter</string>
+    <string name="password_does_not_have_minimum_one_letter">Password does not have minimum one letter</string>
+    <string name="password_has_minimum_one_digit">Password has minimum one digit</string>
+    <string name="password_does_not_have_minimum_one_digit">Password does not have minimum one digit</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
 </resources>
