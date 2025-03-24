@@ -208,4 +208,23 @@ class AuthActionReducerTest {
             "Password visibility event should be dispatched"
         )
     }
+
+    @Test
+    fun testOnContinueWithEmailClickIsTriggered() = runTest {
+        var isOnContinueWithEmailClickDispatched = false
+
+        authActionReducer.reduce(
+            scope = this,
+            state = AuthState(),
+            action = AuthAction.OnContinueWithEmailClick,
+            authManager = fakeAuthManager,
+            dispatchEvent = { event ->
+                if (event == AuthEvent.ContinuingWithEmail) isOnContinueWithEmailClickDispatched = true
+            }
+        )
+
+        isOnContinueWithEmailClickDispatched should beTrue(
+            "OnContinueWithEmailClick event should be dispatched"
+        )
+    }
 }
