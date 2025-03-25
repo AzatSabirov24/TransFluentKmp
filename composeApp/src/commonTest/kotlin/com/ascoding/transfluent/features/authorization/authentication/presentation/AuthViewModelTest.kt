@@ -7,7 +7,7 @@ import com.ascoding.transfluent.features.authentication.domain.PasswordValidator
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthAction
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthViewModel
 import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
-import com.ascoding.transfluent.features.authentication.presentation.register_login.reducer.AuthActionReducer
+import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthActionReducer
 import com.ascoding.transfluent.features.authorization.authentication.data.FakeAuthManager
 import com.ascoding.transfluent.utils.beFalse
 import com.ascoding.transfluent.utils.beTrue

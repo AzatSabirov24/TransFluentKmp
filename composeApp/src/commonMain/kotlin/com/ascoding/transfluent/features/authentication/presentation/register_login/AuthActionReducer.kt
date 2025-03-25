@@ -1,13 +1,9 @@
-package com.ascoding.transfluent.features.authentication.presentation.register_login.reducer
+package com.ascoding.transfluent.features.authentication.presentation.register_login
 
 import com.ascoding.transfluent.features.authentication.domain.AuthManager
 import com.ascoding.transfluent.features.authentication.domain.Credentials
 import com.ascoding.transfluent.features.authentication.domain.EmailValidator
 import com.ascoding.transfluent.features.authentication.domain.PasswordValidator
-import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthAction
-import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthEvent
-import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthState
-import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

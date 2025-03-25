@@ -2,7 +2,6 @@ package com.ascoding.transfluent.features.authentication.presentation.register_l
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ascoding.transfluent.features.authentication.presentation.register_login.reducer.AuthActionReducer
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow

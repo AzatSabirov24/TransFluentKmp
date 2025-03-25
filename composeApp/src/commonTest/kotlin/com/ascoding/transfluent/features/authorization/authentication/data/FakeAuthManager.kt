@@ -38,6 +38,19 @@ class FakeAuthManager(override val userAuthId: String?) : AuthManager {
         }
     }
 
+    override fun signOut(
+        scope: CoroutineScope,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        this.onSuccess = {
+            onSuccess()
+        }
+        this.onFailure = { exception ->
+            onFailure(exception)
+        }
+    }
+
     fun simulateSuccess(scope: CoroutineScope) {
         scope.launch {
             onSuccess?.invoke()

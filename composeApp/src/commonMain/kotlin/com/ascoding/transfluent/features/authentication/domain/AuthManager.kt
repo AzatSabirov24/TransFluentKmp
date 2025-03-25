@@ -19,4 +19,10 @@ interface AuthManager {
         onSuccess: () -> Unit = {},
         onFailure: (Exception) -> Unit = {}
     )
+
+    fun signOut(
+        scope: CoroutineScope,
+        onSuccess: () -> Unit = {},
+        onFailure: (Exception) -> Unit = {}
+    )
 }

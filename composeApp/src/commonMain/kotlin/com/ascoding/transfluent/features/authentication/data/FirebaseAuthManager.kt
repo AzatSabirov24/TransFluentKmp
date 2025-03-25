@@ -51,4 +51,20 @@ class FirebaseAuthManager : AuthManager {
             }
         }
     }
+
+    override fun signOut(
+        scope: CoroutineScope,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        scope.launch {
+            try {
+                val auth = Firebase.auth
+                auth.signOut()
+                onSuccess()
+            } catch (e: Exception) {
+                onFailure(e)
+            }
+        }
+    }
 }

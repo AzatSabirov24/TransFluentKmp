@@ -41,4 +41,12 @@ class GoogleAuthManager : AuthManager {
             }
         }
     }
+
+    override fun signOut(
+        scope: CoroutineScope,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        TODO("Not yet implemented")
+    }
 }

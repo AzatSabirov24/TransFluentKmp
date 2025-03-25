@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package com.ascoding.transfluent.features.authorization.authentication.presentation.reducer
+package com.ascoding.transfluent.features.authorization.authentication.presentation
 
 import com.ascoding.transfluent.features.authentication.domain.EmailValidator
 import com.ascoding.transfluent.features.authentication.domain.PasswordValidator
@@ -8,7 +8,7 @@ import com.ascoding.transfluent.features.authentication.presentation.register_lo
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthEvent
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthState
 import com.ascoding.transfluent.features.authentication.presentation.register_login.LoginOrRegisterAction
-import com.ascoding.transfluent.features.authentication.presentation.register_login.reducer.AuthActionReducer
+import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthActionReducer
 import com.ascoding.transfluent.features.authorization.authentication.data.FakeAuthManager
 import com.ascoding.transfluent.utils.beFalse
 import com.ascoding.transfluent.utils.beTrue

@@ -8,10 +8,12 @@ import com.ascoding.transfluent.features.authentication.domain.PasswordValidator
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthManagerFactory
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthManagerFactoryImpl
 import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthViewModel
-import com.ascoding.transfluent.features.authentication.presentation.register_login.reducer.AuthActionReducer
-import com.ascoding.transfluent.features.profile.ProfileReducer
+import com.ascoding.transfluent.features.authentication.presentation.register_login.AuthActionReducer
+import com.ascoding.transfluent.features.profile.reducer.ProfileActionReducer
 import com.ascoding.transfluent.features.profile.ProfileViewModel
+import com.ascoding.transfluent.features.profile.reducer.ProfileEventReducer
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -33,6 +35,7 @@ val sharedModule = module {
     viewModelOf(::AuthViewModel)
 
     // profile
-    factoryOf(::ProfileReducer)
-    viewModelOf(::ProfileViewModel)
+    factoryOf(::ProfileActionReducer)
+    factoryOf(::ProfileEventReducer)
+    viewModel { ProfileViewModel(get(), get(), FirebaseAuthManager()) }
 }
