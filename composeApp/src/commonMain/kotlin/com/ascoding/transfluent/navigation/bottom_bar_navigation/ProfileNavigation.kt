@@ -24,7 +24,7 @@ private fun navigate(state: ProfileState, navController: NavController) {
     when {
         state.isSignedOut -> {
             navController.navigate(Route.AuthGraph) {
-                popUpTo(Route.MainGraph) { inclusive = true }
+                popUpTo(Route.MainGraph) { inclusive = false }
             }
         }
     }
