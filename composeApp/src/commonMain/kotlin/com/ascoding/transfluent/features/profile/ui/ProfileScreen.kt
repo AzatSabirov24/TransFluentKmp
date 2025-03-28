@@ -9,19 +9,25 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ascoding.transfluent.features.profile.ProfileAction
+import com.ascoding.transfluent.features.profile.ProfileEvent
 import com.ascoding.transfluent.features.profile.ProfileViewModel
+import com.ascoding.transfluent.navigation.route.Route
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun ProfileScreenRoot(
-    viewModel: ProfileViewModel = koinViewModel()
+    viewModel: ProfileViewModel = koinViewModel(),
+    navigateFromProfile: (Route) -> Unit
 ) {
     ProfileScreen(viewModel::onAction)
 
     LaunchedEffect(Unit) {
         viewModel.events.collectLatest { event ->
-            println("xyz ProfileScreen.kt -> ProfileScreenRoot -> ${event}")
+            when (event) {
+                is ProfileEvent.SignOutSuccess -> navigateFromProfile(Route.AuthGraph)
+                is ProfileEvent.SignOutError -> Unit
+            }
         }
     }
 }

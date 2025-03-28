@@ -1,31 +1,35 @@
 package com.ascoding.transfluent.navigation.bottom_bar_navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.ascoding.transfluent.features.profile.ProfileState
 import com.ascoding.transfluent.features.profile.ProfileViewModel
 import com.ascoding.transfluent.features.profile.ui.ProfileScreenRoot
 import com.ascoding.transfluent.navigation.route.Route
-import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun ProfileNavigation(navController: NavController) {
-    val viewModel = koinInject<ProfileViewModel>()
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val viewModel = koinViewModel<ProfileViewModel>()
 
-    ProfileScreenRoot(viewModel)
-
-    navigate(state, navController)
+    ProfileScreenRoot(viewModel) {
+        navigateFromProfile(navController, it)
+    }
 }
 
-private fun navigate(state: ProfileState, navController: NavController) {
-    when {
-        state.isSignedOut -> {
+private fun navigateFromProfile(
+    navController: NavController,
+    navigationRoute: Route
+) {
+    when (navigationRoute) {
+        is Route.AuthGraph -> {
             navController.navigate(Route.AuthGraph) {
-                popUpTo(Route.MainGraph) { inclusive = false }
+                popUpTo(Route.MainGraph) {
+                    inclusive = true
+                }
+                launchSingleTop = true
             }
         }
+
+        else -> Unit
     }
 }
